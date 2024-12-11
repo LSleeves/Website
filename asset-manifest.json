@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/static/css/main.118b91b9.css",
+    "main.js": "/static/js/main.d763782f.js",
+    "static/media/R1.jpeg": "/static/media/R1.b517db7eff8491d58a52.jpeg",
+    "static/media/R2.jpeg": "/static/media/R2.02b74e62f33822233e41.jpeg",
+    "static/media/R3.jpeg": "/static/media/R3.b5358b8512f3bda4c475.jpeg",
+    "static/media/AKelly.jpg": "/static/media/AKelly.75dde80f71281e8b3682.jpg",
+    "static/media/instagram.png": "/static/media/instagram.9140a48abb4a057d51cb.png",
+    "static/media/mogra-gujarati-400-normal.woff2": "/static/media/mogra-gujarati-400-normal.785fbaedfff741ab2bf8.woff2",
+    "static/media/mogra-gujarati-400-normal.woff": "/static/media/mogra-gujarati-400-normal.ab1376934f937c062f12.woff",
+    "static/media/mogra-latin-400-normal.woff2": "/static/media/mogra-latin-400-normal.fa42a045a05173433466.woff2",
+    "static/media/gymnast.png": "/static/media/gymnast.3ebe973d570168761ce8.png",
+    "static/media/life-coach.png": "/static/media/life-coach.2ccf5e312986ce55f7fc.png",
+    "static/media/mogra-latin-400-normal.woff": "/static/media/mogra-latin-400-normal.06fd628237bb91269c48.woff",
+    "static/media/crown.png": "/static/media/crown.39ee10ec81ccad9de61a.png",
+    "static/media/mogra-latin-ext-400-normal.woff2": "/static/media/mogra-latin-ext-400-normal.73ca4f405d17cc9f73a7.woff2",
+    "static/media/mogra-latin-ext-400-normal.woff": "/static/media/mogra-latin-ext-400-normal.3b7f536f23b8e05a2402.woff",
+    "index.html": "/index.html",
+    "main.118b91b9.css.map": "/static/css/main.118b91b9.css.map",
+    "main.d763782f.js.map": "/static/js/main.d763782f.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.118b91b9.css",
+    "static/js/main.d763782f.js"
+  ]
+}
