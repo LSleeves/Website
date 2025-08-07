@@ -1,442 +1,66 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
-    <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <script src="https://kit.fontawesome.com/011bb0d307.js" crossorigin="anonymous"></script>
-    <title>Meet Gannon Rutty</title>
-  </head>
-  <body>
-    <script type="text/babel">
-      const TicTacToe = () => {
-        const [board, setBoard] = React.useState(Array(9).fill(null));
-        const [isPlayerTurn, setIsPlayerTurn] = React.useState(true);
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Gannon Rutty — Entrepreneur & Builder</title>
+    <meta name="description" content="Entrepreneur and builder. Exploring products, code, and ideas. See projects, experiments, and how to get in touch." />
+    <link rel="canonical" href="https://gannonrutty.com/" />
+    <meta name="theme-color" content="#0a83c6" />
 
-        const checkWinner = (board) => {
-          const winPatterns = [
-            [0, 1, 2],
-            [3, 4, 5],
-            [6, 7, 8],
-            [0, 3, 6],
-            [1, 4, 7],
-            [2, 5, 8],
-            [0, 4, 8],
-            [2, 4, 6],
-          ];
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://gannonrutty.com/" />
+    <meta property="og:title" content="Gannon Rutty — Entrepreneur & Builder" />
+    <meta property="og:description" content="Projects, experiments, and ways to connect." />
+    <meta property="og:image" content="/GR.png" />
 
-          for (let pattern of winPatterns) {
-            const [a, b, c] = pattern;
-            if (board[a] && board[a] === board[b] && board[a] === board[c]) {
-              return board[a];
-            }
-          }
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://gannonrutty.com/" />
+    <meta name="twitter:title" content="Gannon Rutty — Entrepreneur & Builder" />
+    <meta name="twitter:description" content="Projects, experiments, and ways to connect." />
+    <meta name="twitter:image" content="/GR.png" />
 
-          return board.includes(null) ? null : "Tie";
-        };
+    <!-- Favicon -->
+    <link rel="icon" href="/GR.png" type="image/png" />
+    <link rel="apple-touch-icon" href="/GR.png" />
 
-        const minimax = (board, depth, isMaximizing) => {
-          const winner = checkWinner(board);
-          if (winner === "O") return 10 - depth;
-          if (winner === "X") return depth - 10;
-          if (winner === "Tie") return 0;
+    <!-- Preloads for performance -->
+    <link rel="preload" href="/src/main.jsx" as="script" />
+    <link rel="preload" href="/styles/main.css" as="style" />
+    <link rel="preload" href="/GR.png" as="image" />
 
-          if (isMaximizing) {
-            let maxEval = -Infinity;
-            for (let i = 0; i < board.length; i++) {
-              if (board[i] === null) {
-                board[i] = "O";
-                const evaluation = minimax(board, depth + 1, false);
-                board[i] = null;
-                maxEval = Math.max(maxEval, evaluation);
-              }
-            }
-            return maxEval;
-          } else {
-            let minEval = Infinity;
-            for (let i = 0; i < board.length; i++) {
-              if (board[i] === null) {
-                board[i] = "X";
-                const evaluation = minimax(board, depth + 1, true);
-                board[i] = null;
-                minEval = Math.min(minEval, evaluation);
-              }
-            }
-            return minEval;
-          }
-        };
-
-        const computerMove = (currentBoard) => {
-          let bestScore = -Infinity;
-          let move;
-
-          for (let i = 0; i < currentBoard.length; i++) {
-            if (currentBoard[i] === null) {
-              currentBoard[i] = "O";
-              const score = minimax(currentBoard, 0, false);
-              currentBoard[i] = null;
-              if (score > bestScore) {
-                bestScore = score;
-                move = i;
-              }
-            }
-          }
-
-          if (move !== undefined) {
-            const newBoard = [...currentBoard];
-            newBoard[move] = "O";
-            setBoard(newBoard);
-            setIsPlayerTurn(true);
-          }
-        };
-
-        const handleClick = (index) => {
-          if (board[index] || checkWinner(board) || !isPlayerTurn) return;
-
-          const newBoard = [...board];
-          newBoard[index] = "X";
-          setBoard(newBoard);
-          setIsPlayerTurn(false);
-
-          // Use the updated board state for computer move
-          setTimeout(() => {
-            const latestBoard = [...newBoard];
-            if (!checkWinner(latestBoard)) {
-              computerMove(latestBoard);
-            }
-          }, 500);
-        };
-
-        const renderSquare = (index) => (
-          <button className="square" onClick={() => handleClick(index)} disabled={!!board[index]}>
-            {board[index]}
-          </button>
-        );
-
-        const winner = checkWinner(board);
-
-        return (
-          <div>
-            <h2>Tic Tac Toe</h2>
-            <div className="board">
-              {board.map((_, index) => renderSquare(index))}
-            </div>
-            {winner && (
-              <div className="status">
-                {winner === "Tie" ? "It's a Tie!" : `Winner: ${winner}`}
-              </div>
-            )}
-            <button className="reset-button" onClick={() => {
-              setBoard(Array(9).fill(null));
-              setIsPlayerTurn(true);
-            }}>
-              Reset
-            </button>
-          </div>
-        );
-      };
-
-      ReactDOM.render(<TicTacToe />, document.getElementById("tic-tac-toe-root"));
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Gannon Rutty",
+        "url": "https://gannonrutty.com/",
+        "email": "mailto:hello@gannonrutty.com",
+        "jobTitle": "Entrepreneur & Builder",
+        "description": "Entrepreneur and builder exploring products, code, and ideas.",
+        "sameAs": [
+          "https://www.linkedin.com/in/gannon-rutty/",
+          "https://www.freecodecamp.org/GannonR"
+        ]
+      }
     </script>
 
-    <nav id="navbar">
-      <ul>
-        <li><a href="#welcome-section">About</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-
-    <section id="welcome-section" class="welcome-section">
-      <h1>Hello, I am</h1>
-      <h1>Gannon Rutty</h1>
-      <p>an aspiring entrepreneur</p>
-    </section>
-
-    <section id="projects">
-      <h2 class="projects-header">Try and beat me!</h2>
-      <div id="tic-tac-toe-root"></div>
-    </section>
-
-    <section id="contact" class="contactme">
-      <div class="contactheader">
-        <h2 class="contacth">Get in touch...</h2>
-        <p class="connectp">Connect with me via:</p>
+    <!-- Security headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="X-Frame-Options" content="DENY" />
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
+  </head>
+  <body>
+    <noscript>
+      <div style="padding: 20px; text-align: center; background: #f0f0f0; color: #333;">
+        <h1>JavaScript Required</h1>
+        <p>This website requires JavaScript to function properly. Please enable JavaScript in your browser.</p>
       </div>
-      <div class="contacts">
-        <a href="https://www.linkedin.com/in/gannon-rutty/" class="details" target="_blank"><i class="fa-brands fa-linkedin-in"></i> Connect</a>
-        <a href="mailto:hello@gannonrutty.com" class="details"><i class="fa-solid fa-envelope"></i> Send an email</a>
-        <a id="profile-link" href="https://www.freecodecamp.org/GannonR" class="details" target="_blank"><i class="fa-solid fa-code"></i> My coding progress</a>
-      </div>
-    </section>
-
-    <footer>
-      <p>&copy; 2024 Gannon Rutty. All Rights Reserved.</p>
-    </footer>
+    </noscript>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
-
-<style>
-
-:root{
-  --maincolor1: rgb(10, 131, 198);
-  --maincolor2: linen;
-  --maincolor3: #122D5D;
-  --maincolor4: #5D122D;
-}
-
-
-* {
-  margin:0;
-  padding: 0;
-}
-
-*, *::before, *::after {
-  box-sizing: inherit;
-}
-
-html {
-  font-size: 69%;
-  scroll-behavior: smooth;
-  box-sizing: border-box;
-}
-
-@media (max-width:112em) {
-  html{
-    font-size: 59%
-  }
-}
-
-body{
-  font-family: Georgia, sans-serif;
-  font-weight: 699;
-  text-align: center; 
-}
-
-h1{
-  font-size: 7rem;
-}
-
-h2{
-  font-size: 5rem;
-}
-
-a {
-  text-decoration: none;
-  color: var(--maincolor2);
-}
-
-img {
-  display: block;
-  width: 100%
-}
-
-#navbar {
-display: flex;
-justify-content: flex-end;
-position: fixed;
-top: 0;
-left: 0;
-width: 100%;
-background: var(--maincolor1);
-color: var(--maincolor2);
-box-shadow: 0 2px 0 rgb(35, 35, 85);
-}
-ul {
-  list-style: none;
-  display: flex;
-  margin-right: 3rem;
-  font-size: 2.5rem;
-  justify-content: center;
-}
-
-li{
-  padding: 2rem;
-}
-li:hover{
-  background-color: rgb(35, 35, 85);
-}
-#welcome-section{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100vh;
-  background: linear-gradient(135deg, rgb(19, 100, 230) 3%, rgb(46, 122, 198) 38%, rgb(0, 124, 166) 68%, rgb(25, 174, 224) 88%);
-  animation: gradient 10s infinite;
-  background-size: 400% 200%;
-  background-attachment: scroll;
-  color: linen;
-  text-shadow: 0px 0px 0px #0010;
-}
-@keyframes gradient {
-    0% {
-        background-position: 0% 0%;
-    }
-    50% {
-        background-position: 100% 100%;
-    }
-    100% {
-        background-position: 0% 0%;
-    }
-}
-
-#welcome-section > p{
-  font-size: 2rem;
-  font-style: italic;
-  color: rgb(185, 221, 234);
-  text-shadow: 0.75px 0px 0px #000;
-}
-
-#projects {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100vh;
-  text-align: center;
-  padding: 1px;
-  background: var(--maincolor4);
-  color: linen;
-}
-.projects-header {
-  max-width: 650px;
-  margin: 0 auto 6rem auto;
-  border-bottom: 1px solid linen;
-}
-.comingsoon {
-  color: linen;
-  font-size: 3rem;
-  text-align: center;
-  }
-.projects-portfolio {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  grid-gap: 5rem;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  margin-bottom: 5rem;
-}
-.project-tile {
-  background-color: rgb(175, 155, 45);
-  padding: auto;
-  box-shadow: 1px 1px 2px rgb(101, 89, 18);
-  border-radius: 2.5%;
-  color: linen;
-  font-size: 3rem;
-}
-.project-img {
-  height: 80%;
-  width: 100%;
-  object-fit: cover;
-  border-radius: 2.5%;
-}
-.project-title {
-  background-color: rgb(175, 155, 45);
-  border-radius: 0 2.5%;
-  box-shadow: 1px 2px rgb(101, 89, 18);
-}
-
-#contact{ 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  width: 100%;
-  height: 95vh;
-  padding: 0 2rem;
-  background: linear-gradient(-69deg, var(--maincolor3), gray, var(--maincolor1));
-  color: linen;
-  text-shadow: 0.75px 1px 1px #000;
-  font-style: bold;
-}
-.contacth {
-  font-size: 8rem;
-}
-.connectp {
-  font-size: 2rem;
-  font-style: italic;
-  padding: 0 5rem;
-}
-.contacts {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  margin-top: 3rem;
-  flex-wrap: wrap;
-  font-size: 1.5rem;
-}
-a {
-  margin: 20px;
-  color: linen;
-  text-shadow: 100px #000;
-}
-i {
-  font-size: 175%;
-  text-shadow: 100px #000;
-  color: rgb(193, 193, 193);
-}
-
-footer{
-  background: var(--maincolor1);
-  color: linen;
-  border-top: 2px solid rgb(35, 35, 85);
-  display: flex;
-  justify-content: center;
-  font-size: 150%;
-  text-shadow: 100px #000;
-  padding: 1rem;
-}
-.board {
-  display: grid;
-  grid-template-columns: repeat(3, 100px);
-  gap: 5px;
-  justify-content: center;
-  margin: 20px auto;
-}
-
-.square {
-  width: 100px;
-  height: 100px;
-  font-size: 24px;
-  font-weight: bold;
-  text-align: center;
-  vertical-align: middle;
-  cursor: pointer;
-  background: #f0f0f0;
-  border: 1px solid #333;
-  outline: none;
-}
-
-.square:disabled {
-  cursor: not-allowed;
-  background: #ddd;
-}
-
-.status {
-  margin: 20px;
-  font-size: 18px;
-  font-weight: bold;
-}
-
-.reset-button {
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  background: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-}
-
-.reset-button:hover {
-  background: #0056b3;
-}
-    </style>
-
