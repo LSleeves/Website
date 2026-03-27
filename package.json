@@ -1,5 +1,6 @@
 {
   "name": "gannonrutty-website",
+  "type": "module",
   "private": true,
   "version": "1.0.0",
   "description": "Personal website for Gannon Rutty",
