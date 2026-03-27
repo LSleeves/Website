@@ -5,7 +5,7 @@
     "buildCommand": "npm run build"
   },
   "deploy": {
-    "startCommand": "npx serve dist -p ${PORT:-3000} -s",
+    "startCommand": "NODE_OPTIONS=--max-old-space-size=96 node server.mjs",
     "restartPolicyType": "ON_FAILURE"
   }
 }

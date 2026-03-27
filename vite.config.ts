@@ -7,6 +7,10 @@ export default defineConfig({
     port: 3000,
     strictPort: false,
   },
+  build: {
+    target: 'es2022',
+    cssMinify: true,
+  },
 })
 
 
