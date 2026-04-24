@@ -4,15 +4,6 @@
 
 Personal portfolio site at gannonrutty.com. React + Vite SPA with a hero, projects showcase, contact section, a footer, and an interactive Tic-Tac-Toe component. Served in production by a tiny Node static server on Railway.
 
-## Repo layout quirk
-
-The project root is **nested one level deeper** than the other projects:
-
-- Local folder: `Projects/Website/Website/`
-- GitHub repo: `github.com/LSleeves/Website` — the repo is cloned into the inner `Website/` folder
-
-When you run `git pull` / `git push`, do it from `Projects/Website/Website/`, not from `Projects/Website/`.
-
 ## Tech stack
 
 - **Build tool**: Vite 7
@@ -58,13 +49,12 @@ No environment variables required. The server reads `PORT` if set (Railway provi
 
 - **JSX, not TSX** — don't add a TypeScript setup here unless I ask. It's intentionally a tiny JS project.
 - **No Tailwind** — styling is handcrafted CSS with custom properties in `styles/main.css`. Keep that consistency if adding new styles.
-- **Nested repo path** — see the "Repo layout quirk" at the top. All git commands happen from `Projects/Website/Website/`.
 - **Serve via `server.mjs`, not `vite preview`**, in production. `vite preview` is for local checks only.
 - **Heap cap in `npm run start`** — if you change the start script, keep the `--max-old-space-size` flag or expect Railway OOMs.
 
 ## Git workflow (reminder)
 
-Before any work: `cd Projects/Website/Website/ && git pull`. After: `git add .`, clear commit message, `git push`. Every time, no exceptions.
+Before any work: `git pull`. After: `git add .`, clear commit message, `git push`. Every time, no exceptions.
 
 ## Commit authorship rules
 
