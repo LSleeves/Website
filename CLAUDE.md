@@ -65,3 +65,19 @@ No environment variables required. The server reads `PORT` if set (Railway provi
 ## Git workflow (reminder)
 
 Before any work: `cd Projects/Website/Website/ && git pull`. After: `git add .`, clear commit message, `git push`. Every time, no exceptions.
+
+## Commit authorship rules
+
+**Non-negotiable. Applies to every commit in every project — current and future.**
+
+- Every commit is authored solely by **Gannon Rutty <gannonrutty@gmail.com>**.
+- **Never** add `Co-authored-by:` trailers of any kind — no Claude, no Anthropic, no other AI tool, no other person.
+- **Never** include phrases like "Generated with Claude Code", "Created by Claude", "AI-assisted", "with Claude's help", or any other AI / Anthropic attribution in commit messages, PR descriptions, or code comments.
+- **Never** add Claude / Anthropic references to README files, documentation, or any committed file.
+- Commit messages are written in **first person, as if Gannon wrote them himself** — "Fix login bug", "Add invoice export", "Refactor PO validation" — not "Claude helped fix…" and not "We fixed…".
+- Configure `git` locally with Gannon's identity before committing:
+  ```bash
+  git config user.name  "Gannon Rutty"
+  git config user.email "gannonrutty@gmail.com"
+  ```
+- This rule is inherited from the master `Projects/CLAUDE.md` and restated here so it applies regardless of which CLAUDE.md Claude Code loads.
