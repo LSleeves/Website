@@ -81,3 +81,9 @@ Before any work: `cd Projects/Website/Website/ && git pull`. After: `git add .`,
   git config user.email "gannonrutty@gmail.com"
   ```
 - This rule is inherited from the master `Projects/CLAUDE.md` and restated here so it applies regardless of which CLAUDE.md Claude Code loads.
+
+---
+
+## Terminal aliases
+
+See the master `CLAUDE.md` at `../CLAUDE.md` (Projects root) for the full alias list. Key ones: `gp` (git pull), `gcp "msg"` (add + commit + push), `gs` (git status).
