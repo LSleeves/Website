@@ -2,12 +2,12 @@ import React from 'react'
 
 const ITEMS = [
   'Builder',
-  'Entrepreneur',
-  'Pickleball',
   'Fishing',
+  'Entrepreneur',
   'Sea-Doos',
-  'Self-hoster',
   'Shipping beats talking',
+  'Pickleball',
+  'Self-hoster',
   'Ideas → products',
 ]
 

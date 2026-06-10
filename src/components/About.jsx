@@ -75,7 +75,7 @@ export default function About() {
 
           <article className="bento-card" onMouseMove={spotlight} data-reveal style={{ '--reveal-delay': '0.24s' }}>
             <div className="stats-row">
-              <Stat value={10} suffix="+" label="Live sites" />
+              <Stat value={7} suffix="+" label="Live sites" />
               <Stat value={15} suffix="+" label="Containers" />
             </div>
             <p style={{ marginTop: 'var(--space-4)', textAlign: 'center', fontSize: 'var(--text-sm)' }}>

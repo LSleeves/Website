@@ -45,7 +45,7 @@ function minimax(board, depth, isMaximizing, player, ai) {
 }
 
 const LOSS_TAUNTS = [
-  'The bot wins. It literally cannot lose — it’s minimax.',
+  'The bot wins. It literally cannot lose.',
   'Beaten again. Don’t worry, so is everyone.',
   'The bot remains undefeated since the dawn of game theory.',
 ]
