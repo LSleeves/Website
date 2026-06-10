@@ -46,7 +46,7 @@ export default function Contact() {
     <section id="contact" className="section" aria-labelledby="contact-title">
       <div className="container">
         <p className="section-label" style={{ justifyContent: 'center' }} data-reveal>Contact</p>
-        <h2 id="contact-title" data-reveal>Let's build something.</h2>
+        <h2 id="contact-title" data-reveal>Let's talk.</h2>
         <p className="lede" data-reveal>
           I'm always open to chatting about projects, products, and ideas —
           see my card below!

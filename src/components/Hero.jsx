@@ -4,7 +4,7 @@ import { useMagnetic } from '../hooks/useScrollAnimation'
 const NAME = 'Gannon Rutty'
 
 // Edit these to change the rotating descriptor words in the hero.
-const WORDS = ['products', 'websites', 'a homelab', 'game nights', 'ideas that ship']
+const WORDS = ['products', 'websites', 'games', 'ideas that ship']
 
 function greeting() {
   const h = new Date().getHours()
@@ -33,7 +33,7 @@ export default function Hero() {
   return (
     <section id="welcome" className="hero" aria-labelledby="hero-title">
       <div className="container">
-        <p className="hero-kicker">{greeting()} 🌊</p>
+        <p className="hero-kicker">{greeting()}</p>
 
         <h1 id="hero-title" className="headline" aria-label={NAME}>
           {NAME.split('').map((ch, i) => (

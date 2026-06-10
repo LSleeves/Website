@@ -3,9 +3,11 @@ import React from 'react'
 const ITEMS = [
   'Builder',
   'Entrepreneur',
+  'Pickleball',
+  'Fishing',
+  'Sea-Doos',
   'Self-hoster',
   'Shipping beats talking',
-  'Pickleball enjoyer',
   'Ideas → products',
 ]
 
