@@ -1,4 +1,5 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
+import { confettiBurst } from '../lib/confetti'
 
 const WIN_PATTERNS = [
   [0,1,2],[3,4,5],[6,7,8],
@@ -44,13 +45,30 @@ function minimax(board, depth, isMaximizing, player, ai) {
   }
 }
 
+const LOSS_TAUNTS = [
+  'The bot wins. It literally cannot lose — it’s minimax.',
+  'Beaten again. Don’t worry, so is everyone.',
+  'The bot remains undefeated since the dawn of game theory.',
+]
+
 export default function TicTacToe() {
   const [board, setBoard] = useState(Array(9).fill(null))
   const [isPlayerTurn, setIsPlayerTurn] = useState(true)
+  const [losses, setLosses] = useState(0)
+  const celebrated = useRef(false)
   const player = 'X'
   const ai = 'O'
 
   const winner = useMemo(() => checkWinner(board), [board])
+
+  // Easter egg: forcing a draw against a perfect bot deserves confetti
+  useEffect(() => {
+    if (winner === 'Tie' && !celebrated.current) {
+      celebrated.current = true
+      confettiBurst({ count: 120 })
+    }
+    if (winner === ai) setLosses((n) => n + 1)
+  }, [winner])
 
   // Run AI turn whenever it's the computer's move
   useComputerTurn(board, isPlayerTurn, setBoard, setIsPlayerTurn)
@@ -81,7 +99,16 @@ export default function TicTacToe() {
   function reset() {
     setBoard(Array(9).fill(null))
     setIsPlayerTurn(true)
+    celebrated.current = false
   }
+
+  const statusText = winner
+    ? winner === 'Tie'
+      ? '🎉 A draw! Against this bot, that’s a win.'
+      : LOSS_TAUNTS[Math.min(losses, LOSS_TAUNTS.length) - 1] || LOSS_TAUNTS[0]
+    : isPlayerTurn
+      ? 'Your move — you’re X'
+      : 'Computer thinking…'
 
   return (
     <div className="ttt-wrapper">
@@ -91,7 +118,7 @@ export default function TicTacToe() {
           <button
             key={i}
             type="button"
-            className="square"
+            className={`square ${cell ? `filled is-${cell.toLowerCase()}` : ''}`}
             aria-label={`Square ${i + 1}`}
             disabled={Boolean(cell) || Boolean(winner) || !isPlayerTurn}
             onClick={() => onSquareClick(i)}
@@ -100,11 +127,11 @@ export default function TicTacToe() {
           </button>
         ))}
       </div>
-      <div className="status">
-        {winner ? (winner === 'Tie' ? `It's a tie!` : `Winner: ${winner}`) : (isPlayerTurn ? 'Your move' : 'Computer thinking…')}
-      </div>
+      <div className="status" aria-live="polite">{statusText}</div>
       <div className="actions">
-        <button type="button" className="btn" onClick={reset}>Reset</button>
+        <button type="button" className="btn" onClick={reset}>
+          {winner ? 'Rematch' : 'Reset'}
+        </button>
       </div>
     </div>
   )

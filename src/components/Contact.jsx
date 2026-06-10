@@ -1,13 +1,16 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
+import { useMagnetic } from '../hooks/useScrollAnimation'
 
 export default function Contact() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [isDesktop, setIsDesktop] = useState(true)
   const cardRef = useRef(null)
+  const emailBtn = useMagnetic()
+  const linkedinBtn = useMagnetic()
 
   useEffect(() => {
     const checkScreenSize = () => {
-      setIsDesktop(window.innerWidth > 1025) // 1025px breakpoint
+      setIsDesktop(window.innerWidth > 1025)
     }
 
     const handleMouseMove = (e) => {
@@ -15,23 +18,15 @@ export default function Contact() {
         const rect = cardRef.current.getBoundingClientRect()
         const centerX = rect.left + rect.width / 2
         const centerY = rect.top + rect.height / 2
-        
-        const x = e.clientX - centerX
-        const y = e.clientY - centerY
-        
-        setMousePosition({ x, y })
+        setMousePosition({ x: e.clientX - centerX, y: e.clientY - centerY })
       }
     }
 
-    // Check screen size on mount and resize
     checkScreenSize()
     window.addEventListener('resize', checkScreenSize)
-
-    // Add mouse move listener only on desktop
     if (isDesktop) {
       document.addEventListener('mousemove', handleMouseMove)
     }
-
     return () => {
       window.removeEventListener('resize', checkScreenSize)
       if (isDesktop) {
@@ -40,53 +35,58 @@ export default function Contact() {
     }
   }, [isDesktop])
 
-  const cardStyle = isDesktop ? {
-    transform: `perspective(1000px) rotateX(${-mousePosition.y * 0.01}deg) rotateY(${mousePosition.x * 0.01}deg) translateZ(20px)`,
-    transition: 'transform 0.1s ease-out'
-  } : {}
-
-  const handleCardClick = (e) => {
-    const rect = cardRef.current.getBoundingClientRect()
-    const clickY = e.clientY - rect.top
-    const cardHeight = rect.height
-    
-    // Top half for email, bottom half for LinkedIn
-    if (clickY < cardHeight / 2) {
-      window.location.href = 'mailto:hello@gannonrutty.com'
-    } else {
-      window.open('https://www.linkedin.com/in/gannon-rutty/', '_blank', 'noopener,noreferrer')
-    }
-  }
+  const cardStyle = isDesktop
+    ? {
+        transform: `perspective(1200px) rotateX(${-mousePosition.y * 0.008}deg) rotateY(${mousePosition.x * 0.008}deg) translateZ(16px)`,
+        transition: 'transform 0.1s ease-out',
+      }
+    : {}
 
   return (
-    <section id="contact" className="section contact" aria-labelledby="contact-title">
+    <section id="contact" className="section" aria-labelledby="contact-title">
       <div className="container">
-        <h2 id="contact-title">Get in touch</h2>
-        <p className="lede">I'm always open to chatting about projects and ideas.</p>
-        
-        <div className="business-card-container">
-          <div 
+        <p className="section-label" style={{ justifyContent: 'center' }} data-reveal>
+          <span className="index">03</span> Contact
+        </p>
+        <h2 id="contact-title" data-reveal>Let's build something.</h2>
+        <p className="lede" data-reveal>
+          I'm always open to chatting about projects, products, and ideas —
+          the card below is the real one.
+        </p>
+
+        <div className="business-card-container" data-reveal>
+          <div
             ref={cardRef}
             className="business-card"
             style={cardStyle}
-            onClick={handleCardClick}
-            aria-label="Business card - click top half for email, bottom half for LinkedIn"
+            onClick={() => { window.location.href = 'mailto:hello@gannonrutty.com' }}
+            aria-label="Business card — click to email Gannon"
             role="button"
             tabIndex={0}
             onKeyDown={(e) => {
               if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault()
-                // Default to email on keyboard interaction
                 window.location.href = 'mailto:hello@gannonrutty.com'
               }
             }}
           >
-            <img 
-              src="/Card.png" 
-              alt="Gannon Rutty Business Card" 
-              className="card-image"
-            />
+            <img src="/Card.png" alt="Gannon Rutty business card" className="card-image" />
           </div>
+        </div>
+
+        <div className="contact-actions" data-reveal>
+          <a ref={emailBtn} className="btn primary" href="mailto:hello@gannonrutty.com">
+            ✉️ hello@gannonrutty.com
+          </a>
+          <a
+            ref={linkedinBtn}
+            className="btn"
+            href="https://www.linkedin.com/in/gannon-rutty/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            in/gannon-rutty ↗
+          </a>
         </div>
       </div>
     </section>

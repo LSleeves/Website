@@ -14,7 +14,7 @@ Personal portfolio site at gannonrutty.com. React + Vite SPA with a hero, projec
 
 ## Key folders
 
-- `src/` — App source: `App.jsx`, `main.jsx`, `components/` (Header, Hero, Projects, Contact, Footer, TicTacToe), `hooks/` (useScrollAnimation).
+- `src/` — App source: `App.jsx`, `main.jsx`, `components/` (Header, Hero, Marquee, About, Projects, Contact, Footer, TicTacToe), `hooks/` (useScrollAnimation: reveal-on-scroll, magnetic buttons, count-up), `lib/` (confetti, easterEggs — Konami party mode, logo-click egg, console banner).
 - `styles/main.css` — Main stylesheet with CSS variables / animations.
 - `public/` — Static assets (logo, etc.).
 - `index.html` — HTML entry with meta tags.
