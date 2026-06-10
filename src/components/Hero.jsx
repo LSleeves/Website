@@ -1,7 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useMagnetic } from '../hooks/useScrollAnimation'
 
 const NAME = 'Gannon Rutty'
+
+// Edit these to change the rotating descriptor words in the hero.
 const WORDS = ['products', 'websites', 'a homelab', 'game nights', 'ideas that ship']
 
 function greeting() {
@@ -13,7 +15,6 @@ function greeting() {
 }
 
 export default function Hero() {
-  const sectionRef = useRef(null)
   const [wordIndex, setWordIndex] = useState(0)
   const ctaPrimary = useMagnetic()
   const ctaSecondary = useMagnetic()
@@ -25,44 +26,19 @@ export default function Hero() {
     return () => clearInterval(id)
   }, [])
 
-  // Mouse parallax for the aurora orbs
-  useEffect(() => {
-    const el = sectionRef.current
-    if (!el) return
-    if (!window.matchMedia('(pointer: fine)').matches) return
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-    const move = (e) => {
-      const r = el.getBoundingClientRect()
-      el.style.setProperty('--px', ((e.clientX - r.left) / r.width - 0.5) * 2)
-      el.style.setProperty('--py', ((e.clientY - r.top) / r.height - 0.5) * 2)
-    }
-    el.addEventListener('mousemove', move, { passive: true })
-    return () => el.removeEventListener('mousemove', move)
-  }, [])
-
   const scrollToAbout = () => {
     document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })
   }
 
   return (
-    <section id="welcome" ref={sectionRef} className="hero" aria-labelledby="hero-title">
-      <div className="hero-bg" aria-hidden="true">
-        <div className="orb-wrap"><div className="orb" /></div>
-        <div className="orb-wrap"><div className="orb" /></div>
-        <div className="orb-wrap"><div className="orb" /></div>
-        <div className="hero-grid" />
-      </div>
-
+    <section id="welcome" className="hero" aria-labelledby="hero-title">
       <div className="container">
-        <p className="hero-kicker">
-          <span className="pulse-dot" aria-hidden="true" />
-          {greeting()} — open to projects &amp; conversations
-        </p>
+        <p className="hero-kicker">{greeting()} 🌊</p>
 
         <h1 id="hero-title" className="headline" aria-label={NAME}>
           {NAME.split('').map((ch, i) => (
             <span key={i} className="h-letter" style={{ '--i': i }} aria-hidden="true">
-              {ch}
+              <span className="h-inner">{ch}</span>
             </span>
           ))}
         </h1>
@@ -79,7 +55,7 @@ export default function Hero() {
       </div>
 
       <button type="button" className="scroll-cue" onClick={scrollToAbout} aria-label="Scroll to about section">
-        scroll
+        dive in
         <span className="chevron" aria-hidden="true" />
       </button>
     </section>

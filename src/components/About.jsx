@@ -24,9 +24,7 @@ export default function About() {
   return (
     <section id="about" className="section" aria-labelledby="about-title">
       <div className="container">
-        <p className="section-label" data-reveal>
-          <span className="index">01</span> About
-        </p>
+        <p className="section-label" data-reveal>About</p>
         <h2 id="about-title" data-reveal>
           I take ideas from <em>“what&nbsp;if”</em> to shipped.
         </h2>

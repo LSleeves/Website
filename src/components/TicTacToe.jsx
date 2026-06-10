@@ -1,5 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react'
-import { confettiBurst } from '../lib/confetti'
+import React, { useEffect, useMemo, useState } from 'react'
 
 const WIN_PATTERNS = [
   [0,1,2],[3,4,5],[6,7,8],
@@ -55,18 +54,12 @@ export default function TicTacToe() {
   const [board, setBoard] = useState(Array(9).fill(null))
   const [isPlayerTurn, setIsPlayerTurn] = useState(true)
   const [losses, setLosses] = useState(0)
-  const celebrated = useRef(false)
   const player = 'X'
   const ai = 'O'
 
   const winner = useMemo(() => checkWinner(board), [board])
 
-  // Easter egg: forcing a draw against a perfect bot deserves confetti
   useEffect(() => {
-    if (winner === 'Tie' && !celebrated.current) {
-      celebrated.current = true
-      confettiBurst({ count: 120 })
-    }
     if (winner === ai) setLosses((n) => n + 1)
   }, [winner])
 
@@ -99,12 +92,11 @@ export default function TicTacToe() {
   function reset() {
     setBoard(Array(9).fill(null))
     setIsPlayerTurn(true)
-    celebrated.current = false
   }
 
   const statusText = winner
     ? winner === 'Tie'
-      ? '🎉 A draw! Against this bot, that’s a win.'
+      ? 'It’s a tie!'
       : LOSS_TAUNTS[Math.min(losses, LOSS_TAUNTS.length) - 1] || LOSS_TAUNTS[0]
     : isPlayerTurn
       ? 'Your move — you’re X'

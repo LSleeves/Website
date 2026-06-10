@@ -45,13 +45,11 @@ export default function Contact() {
   return (
     <section id="contact" className="section" aria-labelledby="contact-title">
       <div className="container">
-        <p className="section-label" style={{ justifyContent: 'center' }} data-reveal>
-          <span className="index">03</span> Contact
-        </p>
+        <p className="section-label" style={{ justifyContent: 'center' }} data-reveal>Contact</p>
         <h2 id="contact-title" data-reveal>Let's build something.</h2>
         <p className="lede" data-reveal>
           I'm always open to chatting about projects, products, and ideas —
-          the card below is the real one.
+          see my card below!
         </p>
 
         <div className="business-card-container" data-reveal>
@@ -76,7 +74,8 @@ export default function Contact() {
 
         <div className="contact-actions" data-reveal>
           <a ref={emailBtn} className="btn primary" href="mailto:hello@gannonrutty.com">
-            ✉️ hello@gannonrutty.com
+            <span aria-hidden="true">✉️</span>
+            <span>hello@gannonrutty.com</span>
           </a>
           <a
             ref={linkedinBtn}
@@ -85,7 +84,8 @@ export default function Contact() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            in/gannon-rutty ↗
+            <span aria-hidden="true">in</span>
+            <span>/gannon-rutty ↗</span>
           </a>
         </div>
       </div>
